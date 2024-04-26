@@ -1,30 +1,28 @@
 import React, { useContext, useRef } from "react";
 import { ProductContext } from "../contexts/PorductContextProvider";
+import { FaShoppingCart } from "react-icons/fa";
 
 const AddProduct = () => {
-  const {
-    setProductName,
-    setProductDescription,
-    setProductPrice,
-    setQuantitySizeM,
-    setQuantitySizeS,
-    setQuantitySizeL,
-  } = useContext(ProductContext);
-
+  const { userData, setUserData } = useContext(ProductContext);
+  
   const name = useRef(null);
   const Description = useRef(null);
   const price = useRef(null);
-  const sizeS = useRef(null);
+  const SizeS = useRef(null);
   const SizeM = useRef(null);
   const SizeL = useRef(null);
   const addProductHandler = () => {
-    setProductName(name.current.value);
-    setProductDescription(Description.current.value);
-    setProductPrice(price.current.value);
-    setQuantitySizeL(SizeL.current.value);
-    setQuantitySizeM(SizeM.current.value);
-    setQuantitySizeS(sizeS.current.value);
+    const newProduct = {
+      name: name.current.value,
+      Description: Description.current.value,
+      price: price.current.value,
+      SizeS: SizeS.current.value,
+      SizeM: SizeM.current.value,
+      SizeL: SizeL.current.value,
+    };
+    setUserData((prev) => [...prev, newProduct]);
   };
+  console.log(userData);
 
   return (
     <div className="w-full bg-white ">
@@ -35,7 +33,7 @@ const AddProduct = () => {
             ref={name}
             type="text"
             placeholder="Enter T-shirt Name"
-            className="rounded-md border-2 border-gray-400 placeholder:p-2"
+            className="rounded-md border-2 border-gray-400 placeholder:p-2 "
           />
         </div>
         <div className="flex flex-col space-y-1">
@@ -61,22 +59,22 @@ const AddProduct = () => {
           <label>Quantity Available</label>
           <div className="flex space-x-1 ">
             <input
-              ref={sizeS}
+              ref={SizeS}
               type="number"
               placeholder="S"
-              className=" w-10 border-2 border-gray-400 placeholder:text-center"
+              className=" w-12 appearance-none border-2 border-gray-400 placeholder:text-center"
             />
             <input
               ref={SizeM}
               type="number"
               placeholder="M"
-              className="w-10 border-2 border-gray-400  placeholder:text-center"
+              className="w-12 appearance-none border-2 border-gray-400 placeholder:text-center"
             />
             <input
               ref={SizeL}
               type="number"
               placeholder="L"
-              className="w-10 border-2 border-gray-400 placeholder:text-center"
+              className="w-12 appearance-none border-2 border-gray-400 placeholder:text-center"
             />
           </div>
         </div>
@@ -88,7 +86,9 @@ const AddProduct = () => {
           Add product
         </button>
       </div>
-      <button>Card</button>
+      <button className="top-14 absolute right-7 flex items-center gap-2 rounded-lg bg-blue-400 p-2 font-semibold text-white transition-all duration-300 hover:bg-blue-500">
+        <FaShoppingCart />({userData.length}) Card
+      </button>
     </div>
   );
 };

@@ -3,26 +3,10 @@ import { createContext, useState } from "react";
 export const ProductContext = createContext();
 
 const ProductContextProvider = ({ children }) => {
-  const [productName, setProductName] = useState(null);
-  const [productDescription, setProductDescription] = useState(null);
-  const [productPrice, setProductPrice] = useState(null);
-  const [quantitySizeS, setQuantitySizeS] = useState(null);
-  const [quantitySizeM, setQuantitySizeM] = useState(null);
-  const [quantitySizeL, setQuantitySizeL] = useState(null);
-
+  const [userData,setUserData] = useState([]);
   const value = {
-    setProductName,
-    setProductDescription,
-    setProductPrice,
-    setQuantitySizeM,
-    setQuantitySizeS,
-    setQuantitySizeL,
-    productName,
-    productDescription,
-    productPrice,
-    quantitySizeS,
-    quantitySizeM,
-    quantitySizeL,
+   userData,
+   setUserData
   };
   return (
     <div>
