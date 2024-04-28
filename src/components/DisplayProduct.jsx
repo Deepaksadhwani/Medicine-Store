@@ -16,9 +16,7 @@ const DisplayProduct = () => {
             name={product.name}
             description={product.Description}
             price={product.price}
-            L={product.SizeL || ""}
-            M={product.SizeM || ""}
-            S={product.SizeS || ""}
+            quantity={product.quantity}
           />
         ))}
       </div>
